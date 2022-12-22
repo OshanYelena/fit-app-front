@@ -9,6 +9,8 @@ import { logout } from "../actions/auth.js";
 import DashboardExercisesPanel from "./ExercisesPanel"
 import DashboardNavBar from "./DashboardNavBar";
 import DashboardMealPlansPanel from'./MealPanel'
+import MemberGroup from "./MemberGroup";
+import Messages from "./Messages";
 
 import MembersOfInstructor from "./membersOfInstructor.json"
 import { connect } from "react-redux";
@@ -57,6 +59,12 @@ const role = "Member";         // Authentication is not working. Change This To 
                       </Route>
                       <Route exact path="/exercises">
                           <DashboardExercisesPanel />
+                      </Route>
+                      <Route exact path="/groups">
+                          <MemberGroup />
+                      </Route>
+                      <Route exact path="/messages">
+                          <Messages />
                       </Route>
                       <Redirect to="/dashboard"/>
                   </Switch>  
@@ -147,6 +155,18 @@ const role = "Member";         // Authentication is not working. Change This To 
             <li className="nav-item">
               <a className="nav-link" href="../exercises">
                 <span className="menu-title">Exercises</span>
+                <i className="mdi mdi-dumbbell menu-icon"></i>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="../groups">
+                <span className="menu-title">Groups</span>
+                <i className="mdi mdi-dumbbell menu-icon"></i>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="../messages">
+                <span className="menu-title">Messages</span>
                 <i className="mdi mdi-dumbbell menu-icon"></i>
               </a>
             </li>

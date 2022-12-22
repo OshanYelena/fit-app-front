@@ -17,6 +17,14 @@ export const EXER_PLAN_ERROR = 'EXER_PLAN_ERROR';
 export const EXER_LOADED = 'EXER_LOADED';
 export const MEAL_LOADED = 'MEAL_LOADED';
 export const ROLE_UPDATE = 'ROLE_UPDATE';
+export const INSTRUC_LOADED = 'INSTRUC_LOADED';
+export const MEMBER_LOADED = 'MEMBER_LOADED';
+export const ADD_GROUP = 'ADD_GROUP';
+export const ADD_GROUP_ERROR = 'ADD_GROUP_ERROR';
+export const MSG_LOAD = 'MSG_LOAD';
+
+
+
 
 
 

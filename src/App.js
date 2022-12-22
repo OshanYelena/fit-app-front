@@ -98,6 +98,10 @@ const App = () => {
           <Route path="/instructor/exercies/add">
             <Exercies />
           </Route>
+          <Route path="/instructor/exercies/add">
+            <Exercies />
+          </Route>
+         
           <PrivateRoute exact path="/profile" component={Profile} />
 
           {/* <PrivateRoute exact path={["/dashboard", "/admin", "/instructors", "/instructor", "/members", "/payment", "/mealplans", "/mealplan", "/exercises"]} component={Dashboard}/> */}
@@ -112,6 +116,8 @@ const App = () => {
               "/mealplans",
               "/mealplan",
               "/exercises",
+              "/groups",
+              "/messages"
             ]}
           >
             <Dashboard />

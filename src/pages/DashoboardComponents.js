@@ -1,8 +1,14 @@
+
+
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch, Link } from "react-router-dom";
 import Chart from "chart.js/auto"; // Do not remove. Crucial for operation
 import { Line } from "react-chartjs-2";
 import { connect } from "react-redux";
+import { getAllInstructors } from "../actions/instructor.js";
+
+import DashboardInstructorsPanel from "./DashboardAdminInstructor.js";
 
 import DashboardNavBar from "./DashboardNavBar.js";
 
@@ -31,10 +37,12 @@ import ExerciseData from "./exercises.json";
 import AllInstructorsData from "./Instructors.json";
 import AllMembersData from "./members.json";
 import MembersOfInstructor from "./membersOfInstructor.json";
+import MessageForm from "./MessageForm.js";
 
+import DashboardAdminMember from "./DashboardAdminMember.js";
 import MemberDashboard from "./DashboardMember.js";
 import TrainorDashboard from "./DashboardIns.js";
-
+import axios from "axios";
 const role = "Member"; // Authentication is not working. Change This To See Other Dashboards ("Admin", "Trainor", "Memeber")
 
 let Avatar;
@@ -49,6 +57,12 @@ if (role == "Admin") {
   Avatar = AvatarMember;
   name = "Sally Seinfield";
 }
+
+const api = axios.create({
+  // baseURL: "https://col-back.herokuapp.com/api/v1",
+  baseURL: "http://localhost:5001/",
+});
+
 
 /**
  * Creates the Dashboard for given role by using global variable "role"
@@ -88,7 +102,7 @@ Dashboard.propTypes = {
 const mapStateToProps = (state) => ({
   type: state.auth.role,
   userData: state.auth.user,
-  dt: console.log(state.auth),
+  dt: console.log(state),
   isAuthenticated: state.auth.isAuthenticated,
 });
 
@@ -122,7 +136,7 @@ function AdminDashboard({isAuthenticated, type , userData }) {
               <DashboardInstructorsPanel />
             </Route>
             <Route exact path="/members">
-              <DashboardMembersPanel />
+              <DashboardAdminMember />
             </Route>
             <Route exact path="/payment">
               <DashboardPaymentPanel />
@@ -133,6 +147,11 @@ function AdminDashboard({isAuthenticated, type , userData }) {
             <Route exact path="/exercises">
               <DashboardExercisesPanel />
             </Route>
+            <Route exact path="/messages">
+              <MessageForm />
+            </Route>
+            
+            
             <Redirect to="/dashboard" />
           </Switch>
           <Footer />
@@ -203,6 +222,12 @@ function DashboardAdminSideBar() {
         <li className="nav-item">
           <a className="nav-link" href="../payment">
             <span className="menu-title">Payment</span>
+            <i className="mdi mdi-cash-usd menu-icon"></i>
+          </a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="../messages">
+            <span className="menu-title">Messages</span>
             <i className="mdi mdi-cash-usd menu-icon"></i>
           </a>
         </li>
@@ -297,7 +322,10 @@ function AdminDashboardPanel() {
         <div className="card-body">
           <div className="chartjs-size-monitor">
             <div className="chartjs-size-monitor-expand">
-              <div className=""></div>
+              <div className="">
+
+                 
+              </div>
             </div>
             <div className="chartjs-size-monitor-shrink">
               <div className=""></div>
@@ -342,50 +370,12 @@ function DashboardAdminPanel() {
  * Create the Instructors panel for all dashboards
  * @returns Instructors panel for all dashboards as JSX
  */
-function DashboardInstructorsPanel() {
-  return (
-    <div className="content-wrapper">
-      <div className="page-header">
-        <h3 className="page-title">
-          <span className="page-title-icon bg-gradient-primary text-white me-2">
-            <i className="mdi mdi-account-star"></i>
-          </span>
-          Instructors
-        </h3>
-      </div>
-      <div className="card">
-        <div className="card-body">
-          <AllInstructorsTable />
-        </div>
-      </div>
-    </div>
-  );
-}
+
 
 /**
  * Create the Members panel for all dashboards
  * @returns Members panel for all dashboards as JSX
  */
-function DashboardMembersPanel() {
-  return (
-    <div className="content-wrapper">
-      <div className="page-header">
-        <h3 className="page-title">
-          <span className="page-title-icon bg-gradient-primary text-white me-2">
-            <i className="mdi mdi-account-multiple"></i>
-          </span>
-          Members
-        </h3>
-      </div>
-      <div className="card">
-        <div className="card-body">
-          {/* <h4 className="card-title">Members</h4> */}
-          <AllMembersTable />
-        </div>
-      </div>
-    </div>
-  );
-}
 
 /**
  * Create the Payment panel for all dashboards
@@ -531,86 +521,9 @@ function Footer() {
   );
 }
 
-function AllMembersTable() {
-  let panel = [];
 
-  AllMembersData.forEach((instructor) => {
-    panel.push(
-      <tr>
-        <th scope="row">{instructor.number}</th>
-        <th>{instructor.id || Math.floor(Math.random() * 100000) % 10000}</th>
-        <th>{instructor.firstName + " " + instructor.lastName}</th>
-        <th>{instructor.gender}</th>
-        <th>
-          {instructor.email ||
-            instructor.firstName.toLowerCase() +
-              instructor.lastName.toLowerCase() +
-              "@gmail.com"}
-        </th>
-        {/* <th>{instructor.avatarLink || "Empty image"}</th> */}
-      </tr>
-    );
-  });
 
-  return (
-    <div className="table-wrapper-scroll-y custom-scrollbar">
-      <table
-        className="table table-bordered table-striped"
-        id="instructorsTable"
-      >
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Email</th>
-            {/* <th scope="col">Avatar</th> */}
-          </tr>
-        </thead>
-        <tbody>{panel}</tbody>
-      </table>
-    </div>
-  );
-}
 
-function AllInstructorsTable() {
-  let panel = [];
-
-  AllInstructorsData.forEach((instructor) => {
-    panel.push(
-      <tr>
-        <th scope="row">{instructor.number}</th>
-        <th>{instructor.id || Math.floor(Math.random() * 100000) % 10000}</th>
-        <th>{instructor.firstName + " " + instructor.lastName}</th>
-        <th>{instructor.gender}</th>
-        <th>{instructor.email}</th>
-        {/* <th>{instructor.avatarLink || "Empty image"}</th> */}
-      </tr>
-    );
-  });
-
-  return (
-    <div className="table-wrapper-scroll-y custom-scrollbar">
-      <table
-        className="table table-bordered table-striped"
-        id="instructorsTable"
-      >
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Email</th>
-            {/* <th scope="col">Avatar</th> */}
-          </tr>
-        </thead>
-        <tbody>{panel}</tbody>
-      </table>
-    </div>
-  );
-}
 
 function RevenueGraph() {
   const labels = ["June", "July", "August", "September", "October", "November"];
