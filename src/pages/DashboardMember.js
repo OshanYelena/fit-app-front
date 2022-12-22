@@ -10,7 +10,7 @@ import Circle from "../assets/images/dashboard/circle.svg";
 
 import axios from "axios";
 import DashboardNavBar from "./DashboardNavBar";
-import ExerciseData from "./exercises.json";
+
 
 const api = axios.create({
   baseURL: "http://localhost:5001/",
@@ -528,29 +528,6 @@ useEffect(() => {
   );
 }
 
-function ExercisesLayout() {
-  let panel = [];
-
-  ExerciseData.forEach((exercise) => {
-    panel.push(
-      <div className="card grid-margin">
-        <div className="card-body row">
-          <div className="col">
-            <h4 className="card-title">{exercise.name}</h4>
-            <a>target : {exercise.target}</a>
-            <br />
-            <a>bodypart : {exercise.bodyPart}</a>
-            <br />
-            <a>equipment : {exercise.equipment}</a>
-          </div>
-          <img className="exersice-image col" src={exercise.gifUrl} />
-        </div>
-      </div>
-    );
-  });
-
-  return <>{panel}</>;
-}
 
 function Footer() {
   return (

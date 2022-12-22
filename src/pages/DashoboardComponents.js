@@ -33,10 +33,8 @@ import AvatarMember from "../assets/images/faces/face2.jpg";
 
 import Circle from "../assets/images/dashboard/circle.svg";
 
-import ExerciseData from "./exercises.json";
-import AllInstructorsData from "./Instructors.json";
-import AllMembersData from "./members.json";
-import MembersOfInstructor from "./membersOfInstructor.json";
+
+
 import MessageForm from "./MessageForm.js";
 
 import DashboardAdminMember from "./DashboardAdminMember.js";
@@ -176,8 +174,8 @@ function DashboardExercisesPanel() {
           Exercises
         </h3>
       </div>
-
-      <ExercisesLayout />
+{/* 
+      <ExercisesLayout /> */}
     </div>
   );
 }
@@ -597,26 +595,4 @@ function NewUsersGraph() {
   );
 }
 
-function ExercisesLayout() {
-  let panel = [];
 
-  ExerciseData.forEach((exercise) => {
-    panel.push(
-      <div className="card grid-margin">
-        <div className="card-body row">
-          <div className="col">
-            <h4 className="card-title">{exercise.name}</h4>
-            <a>target : {exercise.target}</a>
-            <br />
-            <a>bodypart : {exercise.bodyPart}</a>
-            <br />
-            <a>equipment : {exercise.equipment}</a>
-          </div>
-          <img className="exersice-image col" src={exercise.gifUrl} />
-        </div>
-      </div>
-    );
-  });
-
-  return <>{panel}</>;
-}

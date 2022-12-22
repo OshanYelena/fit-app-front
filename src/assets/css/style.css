@@ -4220,7 +4220,7 @@ textarea.form-control-lg {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background-color: transparent;
+  /* background-color: transparent; */
   border: 1px solid transparent;
   padding: 0.875rem 2.5rem;
   font-size: 0.875rem;

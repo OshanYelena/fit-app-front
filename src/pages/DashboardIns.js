@@ -12,25 +12,13 @@ import DashboardMealPlansPanel from'./MealPanel'
 import MemberGroup from "./MemberGroup";
 import Messages from "./Messages";
 
-import MembersOfInstructor from "./membersOfInstructor.json"
+
 import { connect } from "react-redux";
 
 
 
-const role = "Member";         // Authentication is not working. Change This To See Other Dashboards ("Admin", "Trainor", "Memeber")
 
-// let Avatar;
-// let name;
-// if (role == "Admin") {
-//   Avatar = AvatarAdmin;
-//   name = "Admin Advantage";
-// } else if (role == "Trainor"){
-//   Avatar = AvatarInstructor;
-//   name = "David Greymaax";
-// } else {
-//   Avatar = AvatarMember;
-//   name = "Sally Seinfield";
-// }
+
 
 /**
  * Handles the routing for internal panels of Trainor dashboard
@@ -75,62 +63,6 @@ const role = "Member";         // Authentication is not working. Change This To 
   )
   }
 
-//   function DashboardNavBar({name, lastname, avatar}) {
-
-
-//     const onSubmit = async (e) => {
-//       e.preventDefault();
-//       logout();
-//     };
-
-
-//     return (
-//       <nav className="navbar navbar-dashboard default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row bg-white">
-//         <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-//           <a className="navbar-brand brand-logo" href="../../"><img src={Logo} alt="logo" /></a>
-//           {/* <a className="navbar-brand navbar-logo" href="/">FITUS</a> */}
-//           <a className="navbar-brand brand-logo-mini" href="../../"><img src={LogoMini} alt="logo" /></a>
-//         </div>
-//         <div className="navbar-menu-wrapper d-flex align-items-stretch">
-          
-          
-//           <ul className="navbar-nav navbar-nav-right">
-//             <li className="nav-item nav-profile dropdown">
-//               <a className="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-//                 <div className="nav-profile-img">
-//                   <img src={avatar} alt="avatar" />
-//                   <span className="availability-status online"></span>
-//                 </div>
-//                 <div className="nav-profile-text">
-//                   <p className="mb-1 text-black">{name} {lastname}</p>
-//                 </div>
-//               </a>
-//               <div className="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-//                 <div className="dropdown-item">
-//                   <a className="dropdown-item namefield" href="../profile/">
-//                     <img className="me-1 avatar dropdown-item" src={avatar} />{name}<br/>{role}</a>
-//                 </div>
-//                 <div className="dropdown-divider"></div>
-//                 <a className="dropdown-item" href="#">
-//                   <i className="mdi mdi-cached me-2 text-success"></i> Activity Log </a>
-
-//                 <div className="dropdown-divider"></div>
-//                 <button className="dropdown-item" type="button" onClick={onSubmit}>
-//                 <i className="mdi mdi-logout me-2 text-primary"></i> Signout{" "}
-//               </button>
-//               </div>
-//             </li>
-                        
-//           </ul>
-//           <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-//             <span className="mdi mdi-menu"></span>
-//           </button>
-//         </div>
-//       </nav>
-//     )
-    
-// }
-// connect(null, {logout})(DashboardNavBar)
 
 /**
  * Creates the Side bar for Trainor dashboard
@@ -223,12 +155,12 @@ function TrainorDashboardPanel () {
               </div>
             </div>
           </div>
-          <div className="card">
+          {/* <div className="card">
             <div className="card-body">
               <h4 className="card-title">Members</h4>
               <MembersOfInstructorTable />
             </div>
-          </div>
+          </div> */}
         </div>
     )
   }
@@ -256,42 +188,6 @@ function Footer() {
           {/* <span className="float-none float-sm-end mt-1 mt-sm-0 text-end"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin template</a> from Bootstrapdash.com</span> */}
         </div>
       </footer>
-    )
-  }
-  
-  function MembersOfInstructorTable() {
-    let panel = [];
-  
-    MembersOfInstructor.forEach((instructor) => {panel.push(
-      <tr>
-        <th scope="row">{instructor.number}</th>
-        <th>{instructor.id || Math.floor(Math.random() * 100000) % 10000}</th>
-        <th>{instructor.firstName + " " + instructor.lastName}</th>
-        <th>{instructor.gender}</th>
-        <th>{instructor.email || (instructor.firstName.toLowerCase() + instructor.lastName.toLowerCase() + "@gmail.com")}</th>
-        <th>{Math.ceil(Math.random() * 9)}</th>
-        <th>{["Heavy", "Moderate", "Light"][Math.floor(Math.random() * 3)]}</th>
-      </tr>)});
-  
-    return (
-      <div className="table-wrapper-scroll-y custom-scrollbar">
-        <table className="table table-bordered table-striped" id="instructorsTable">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">ID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Gender</th>
-              <th scope="col">Email</th>
-              <th scope="col">Workout hours</th>
-              <th scope="col">Meal plan</th>
-            </tr>
-          </thead>
-          <tbody>
-          {panel}
-          </tbody>
-        </table>
-      </div>
     )
   }
   

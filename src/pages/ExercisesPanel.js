@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { getExercises } from "../actions/instructor";
 
-import ExerciseData from "./exercises.json";
 
 function DashboardExercisesPanel({ getExercises, exerData }) {
   useEffect(() => {

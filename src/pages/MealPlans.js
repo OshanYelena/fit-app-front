@@ -6,16 +6,11 @@ import "./main.css";
 import { createMealPlan } from "../actions/instructor";
 let nextId = 0;
 
-
-const MealPlan = ({
-  createMealPlan,
-  userId,
-  stateUp,
-}) => {
-    const [def, setDef] = useState(false);
+const MealPlan = ({ createMealPlan, userId, stateUp }) => {
+  const [def, setDef] = useState(false);
   const [mealName, setmealName] = useState();
+  const [verify, setVerify] = useState();
   const [group, setGroup] = useState();
-
 
   const [name, setName] = useState({
     monday: "",
@@ -38,16 +33,13 @@ const MealPlan = ({
     saturday: [],
     sunday: [],
   });
-  let id
-  if(userId){
-     id = userId._id
+  let id;
+  if (userId) {
+    id = userId._id;
   }
-
 
   const { monday, tuesday, wednesday, thursday, friday, saturday, sunday } =
     formData;
-
-
 
   //   const onChange = (e) => {
   //     console.log(e);
@@ -55,11 +47,11 @@ const MealPlan = ({
   //     console.log(formData);
   //   };
   const onSubmit = async (e) => {
-        e.preventDefault();
+    e.preventDefault();
     createMealPlan({
-    id, 
-    mealName,
-    group,
+      id,
+      mealName,
+      group,
       monday,
       tuesday,
       wednesday,
@@ -68,16 +60,12 @@ const MealPlan = ({
       saturday,
       sunday,
     });
+    setVerify(true);
   };
 
-
-  if(stateUp){
-    if (stateUp.msg === "meal Created") {
-    return <Redirect to={'/mealPlans'}/>
-        
-
-      }  
-}
+  if (verify) {
+    return <Redirect to={"/mealPlans"} />;
+  }
 
   return (
     <>
@@ -99,13 +87,13 @@ const MealPlan = ({
                   onSubmit(e);
                 }}
               >
-                  <div className="col-md-6">
+                <div className="col-md-6">
                   <label className="form-label fs-5">Meal Name</label>
                   <input
                     type="text"
                     className="form-control"
                     placeholder="Your Meal Name"
-                    onChange={(e) => setmealName( e.target.value )}
+                    onChange={(e) => setmealName(e.target.value)}
                   />{" "}
                 </div>
                 <div className="col-md-6">
@@ -114,7 +102,7 @@ const MealPlan = ({
                     type="text"
                     className="form-control"
                     placeholder="Your Meal Name"
-                    onChange={(e) => setGroup( e.target.value )}
+                    onChange={(e) => setGroup(e.target.value)}
                   />{" "}
                 </div>
                 <div className="col-md-6">
@@ -126,9 +114,10 @@ const MealPlan = ({
                     placeholder="Monday Meal"
                     onChange={(e) => setName({ monday: e.target.value })}
                   />{" "}
-                  <button type="button"
+                  <button
+                    type="button"
                     onClick={() => {
-                        console.log(formData)
+                      console.log(formData);
                       setName({ monday: "" });
                       formData.monday.push({
                         id: nextId++,
@@ -165,7 +154,8 @@ const MealPlan = ({
                     placeholder="Tuesday Meal"
                     onChange={(e) => setName({ tuesday: e.target.value })}
                   />{" "}
-                  <button type="button"
+                  <button
+                    type="button"
                     onClick={() => {
                       setName({ tuesday: "" });
 
@@ -204,7 +194,8 @@ const MealPlan = ({
                     placeholder="Wednesday Meal"
                     onChange={(e) => setName({ wednesday: e.target.value })}
                   />{" "}
-                  <button type="button"
+                  <button
+                    type="button"
                     onClick={() => {
                       setName({ wednesday: "" });
 
@@ -244,7 +235,8 @@ const MealPlan = ({
                     placeholder="Thursday Meal"
                     onChange={(e) => setName({ thursday: e.target.value })}
                   />{" "}
-                  <button type="button"
+                  <button
+                    type="button"
                     onClick={() => {
                       setName({ thursday: "" });
 
@@ -282,7 +274,8 @@ const MealPlan = ({
                     placeholder="Friday Meal"
                     onChange={(e) => setName({ friday: e.target.value })}
                   />{" "}
-                  <button type="button"
+                  <button
+                    type="button"
                     onClick={() => {
                       setName({ friday: "" });
 
@@ -320,7 +313,8 @@ const MealPlan = ({
                     placeholder="Saturday Meal"
                     onChange={(e) => setName({ saturday: e.target.value })}
                   />{" "}
-                  <button type="button"
+                  <button
+                    type="button"
                     onClick={() => {
                       setName({ saturday: "" });
 
@@ -358,7 +352,8 @@ const MealPlan = ({
                     placeholder="Sunday Meal"
                     onChange={(e) => setName({ sunday: e.target.value })}
                   />{" "}
-                  <button type="button"
+                  <button
+                    type="button"
                     onClick={() => {
                       setName({ sunday: "" });
 

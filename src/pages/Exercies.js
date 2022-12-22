@@ -6,6 +6,7 @@ import "./main.css";
 import { createExercies } from "../actions/instructor";
 
 const Exercies = ({ setAlert, createExercies, stateUp }) => {
+  const [rdrct, setRedict] = useState();
   const [formData, setFormData] = useState({
     bodyPart: "",
     equipment: "",
@@ -40,21 +41,12 @@ const Exercies = ({ setAlert, createExercies, stateUp }) => {
         gifUrl,
         name,
         target,
-    })
-
+    }) 
+    setRedict(true);
 }
-if(stateUp){
-    if (stateUp.msg === "Exercies Created") {
-        return <Redirect to="/exercises" />;
-      }
-
-     
-    
-}
-
-//   if (verify) {
-//     return <Redirect to="/user/verification" />;
-//   }
+  if (rdrct) {
+    return <Redirect to="/exercises" />;
+  }
 
   return (
     <>
