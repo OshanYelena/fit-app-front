@@ -1,0 +1,81 @@
+
+
+.sidebar .nav .nav-item.active > .nav-link i.menu-icon:before {
+    color: tomato;
+}
+
+.warning-text {
+    color: red;
+}
+
+.normal-text {
+    color: red;
+}
+
+
+/* Features for the scrollable tables */
+.custom-scrollbar {
+    position: relative;
+    height: 300px;
+    overflow: auto;
+}
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+/* highlighted row for table */
+.table tbody tr.highlight th {
+    background-color: #ddd;
+}
+
+.avatar {
+    /* aspect-ratio: auto; */
+    width: inherit;
+    height: auto;
+
+}
+
+.dropdown-item .avatar {
+    width: 80px;
+    border-radius: 100%;
+}
+
+.dropdown-item .namefield {
+    font: bold;
+}
+
+
+/* Margin classes */
+.mml {
+    margin-left: 0.5rem;
+}
+
+.mml-5 {
+    margin-left: 3rem;
+}
+
+.mmr {
+    margin-right: 0.5rem;
+}
+
+.mmt {
+    margin-right: 0.5rem;
+}
+
+.mmb {
+    margin-right: 0.5rem;
+}
+
+/* Font sizes for cards in dashboard */
+.card-body > h2 {
+    font-size: 3rem;
+}
+
+.card-body > h4 {
+    font-size: 3rem;
+}
+
+/* Images in exercise panel */
+.exersice-image {
+    max-height: 8rem;
+}
