@@ -76,14 +76,17 @@ const Dashboard = ({isAuthenticated, type, userData }) => {
     <>
       {type && userData ?  (
         <>
- 
-          {type === 3 && <AdminDashboard   userData={userData}  type={type} isAuthenticated={isAuthenticated}/>}
+
+
+          {type === 4 && <AdminDashboard   userData={userData}  type={type} isAuthenticated={isAuthenticated}/>}
           {type === 1 && <TrainorDashboard  type={type} userData={userData} isAuthenticated={isAuthenticated}/>}
+          {type === 3 && <TrainorDashboard  type={type} userData={userData} isAuthenticated={isAuthenticated}/>}
           {type === 2 && <MemberDashboard  userData={userData} isAuthenticated={isAuthenticated} />}
         </>
       ) : (
         <>
           {" "}
+          {type === undefined && <Redirect to={"/"}/>}
           <div>... Loading</div>
         </>
       )}

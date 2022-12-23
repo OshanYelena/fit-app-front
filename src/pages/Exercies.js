@@ -6,7 +6,6 @@ import "./main.css";
 import { createExercies } from "../actions/instructor";
 
 const Exercies = ({ setAlert, createExercies, stateUp }) => {
-  const [rdrct, setRedict] = useState();
   const [formData, setFormData] = useState({
     bodyPart: "",
     equipment: "",
@@ -30,6 +29,7 @@ const Exercies = ({ setAlert, createExercies, stateUp }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     console.log(formData);
   };
+  const [rdrct, setRedict] = useState();
 
   const onSubmit = async (e) => {
     e.preventDefault();

@@ -1,4 +1,5 @@
 import { FaCheck, FaTimes } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Plans = () => {
   return (
@@ -76,9 +77,11 @@ const Plans = () => {
                   personalized sessions
                 </li>
               </ul>
+              <Link to={"/dashboard"}>
               <button type="button" className="w-100 btn btn-lg btn-primary">
                 Choose the plan
               </button>
+              </Link>
             </div>
           </div>
         </div>

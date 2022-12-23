@@ -63,22 +63,22 @@ const DashboardNavBar = ({ avatar, name,  type,userId, logout, patchInstructorRo
               {type && (
                 <>
                   {" "}
-                  {type === 1 && (
+                  {type === 3 && (
                     <button
                       className="dropdown-item"
                       type="button"
-                      onClick={ ()=> onChaneRole(3)}
+                      onClick={ ()=> onChaneRole(4)}
                     >
                       <i className="mdi mdi-login me-2 text-primary"></i> Sign
                       As Admin{" "}
                     </button>
                     
                   )}{" "}
-                   {type === 3 && (
+                   {type === 4 && (
                     <button
                       className="dropdown-item"
                       type="button"
-                      onClick={ ()=> onChaneRole(1)}
+                      onClick={ ()=> onChaneRole(3)}
                     >
                       <i className="mdi mdi-login me-2 text-primary"></i> Sign
                       As Instructor{" "}
